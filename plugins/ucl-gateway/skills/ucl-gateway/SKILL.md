@@ -40,7 +40,7 @@ Example:
 
 **Version-checking an already-installed skill is mandatory, not optional.** Whenever a copy is already installed locally, your FIRST action - before you read or run a single line of its body - MUST be to call list_skills and compare the published version against the installed tag. Do NOT trust the installed copy on sight; do NOT skip the check because you used it earlier this session or "just installed it"; do NOT assume it is current because it exists. If the versions match, proceed with the installed copy. If they differ, or you cannot confirm the published version, re-fetch from the UCL tool and reinstall BEFORE doing anything else. Make this version check the first item in your task list. Running a stale installed skill is a failure: always verify; never skip.
 
-**Track the version + add a Step 0 self-check inside the installed skill.** Tag the installed skill with its UCL slug and version, and prepend this generic block at the very TOP of the skill body so every future run self-checks:
+**Track the version + add a Step 0 self-check inside the installed skill.** Tag the installed skill with its UCL slug and version, and place this generic block IMMEDIATELY AFTER the closing `---` of the YAML frontmatter (never above it - the file MUST start with `---`) so every future run self-checks:
 
 > Step 0 — version sync (do this FIRST, every run): this file is tagged `<!-- UCL skill: <slug> v<N> -->`. Call `list_skills({ slugs: ["<slug>"] })` and compare. If the published version differs, re-fetch and reinstall before doing anything else; make it the first item in your task list.
 
@@ -52,6 +52,8 @@ Fill `<slug>`/`<N>` with the skill's real slug and version. On a mismatch, re-fe
 - Install the fetched skill body VERBATIM — word-for-word identical to the UCL SKILL you load through the tool, never in your own words. The version number is the ONLY thing that triggers a refetch/update.
 - Add the skill installation to your task list so you don't miss or forget it. 
 - Never ever rely on the installed copy without first checking the version against UCL it could be stale. If the version differs, re-fetch and install before proceeding.
+- The installed SKILL.md MUST start with the `---` YAML frontmatter. NEVER put the version tag or the Step 0 block above it (that triggers "SKILL.md must start with YAML frontmatter"); place them right AFTER the closing `---`.
+- If the UCL skill has reference documents/files, fetch each one (open_skill_reference) and install them alongside the SKILL.md (in a references/ folder) so you install the COMPLETE skill, not just the SKILL.md.
 
 
 ## Install or save skill for user
