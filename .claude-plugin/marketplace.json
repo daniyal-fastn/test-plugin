@@ -1,0 +1,18 @@
+{
+  "name": "ucl-marketplace",
+  "metadata": {
+    "description": "Marketplace for the UCL gateway plugin - one-click connect to the UCL gateway with its usage skill."
+  },
+  "owner": {
+    "name": "Daniyal",
+    "email": "daniyal@fastn.ai"
+  },
+  "plugins": [
+    {
+      "name": "ucl-gateway",
+      "description": "Registers the UCL gateway MCP server and ships the gateway usage skill, so on install the agent connects directly to the gateway and knows how to discover and run the org's governed integration/connector skills.",
+      "source": "./plugins/ucl-gateway",
+      "category": "development"
+    }
+  ]
+}

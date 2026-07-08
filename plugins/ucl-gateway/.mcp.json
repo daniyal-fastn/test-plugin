@@ -1,0 +1,6 @@
+{
+  "ucl-gateway": {
+    "type": "http",
+    "url": "https://connect.fastn.dev/mcp"
+  }
+}
