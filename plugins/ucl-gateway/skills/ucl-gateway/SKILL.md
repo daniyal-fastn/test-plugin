@@ -55,6 +55,7 @@ Fill `<slug>`/`<N>` with the skill's real slug and version. On a mismatch, re-fe
 - The installed SKILL.md MUST start with the `---` YAML frontmatter. NEVER put the version tag or the Step 0 block above it (that triggers "SKILL.md must start with YAML frontmatter"); place them right AFTER the closing `---`.
 - If the UCL skill has reference documents/files, fetch each one (open_skill_reference) and install them alongside the SKILL.md (in a references/ folder) so you install the COMPLETE skill, not just the SKILL.md.
 - First match the version of the installed skill against the UCL version, and do not follow the skill instructions until the versions match. If the versions differ, re-fetch and install the skill before proceeding then proceed with the instructions.
+- Any version difference ALWAYS triggers a full re-fetch and reinstall (SKILL.md + every reference file) - never skip it even when the SKILL.md body looks unchanged, because the reference files may have changed even if the main skill body did not. The version number is the source of truth, not the visible text.
 
 
 ## Install or save skill for user
