@@ -58,6 +58,7 @@ Fill `<slug>`/`<N>` with the skill's real slug and version. On a mismatch, re-fe
 - Any version difference ALWAYS triggers an update - never skip it even when the SKILL.md body looks unchanged, because a reference file may have changed even if the body did not. The version number is the source of truth, not the visible text.
 - On an update, first find WHAT changed: call `list_skills({slug, knownVersion:<installed>, toVersion:<current>})`, which returns a status-only list of changed files (SKILL.md and/or reference docs). Then re-fetch and apply ONLY those file(s)/section(s) so the installed copy becomes identical to UCL - do NOT rewrite the whole skill or files that did not change. If the diff is unavailable, fall back to a full reinstall. The end result must be verbatim-identical to the current UCL version.
 - Always add a task for installing or updating the skill, and do not proceed with the skill instructions until that task is complete. Never skip the install/update step.
+- To update an already-installed skill, build the updated skill and present it as a .skill file for the user to Save again. When a skill with the same name already exists, saving it prompts the user to update/replace the existing one - that IS the update path. Never tell the user you "cannot update the skill"; always hand them the one-click .skill to Save.
 
 **Find what changed between versions** with `list_skills` (status-only, no file bodies):
 
