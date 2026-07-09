@@ -60,6 +60,11 @@ Fill `<slug>`/`<N>` with the skill's real slug and version. On a mismatch, re-fe
 - Always add a task for installing or updating the skill, and do not proceed with the skill instructions until that task is complete. Never skip the install/update step.
 - To update an already-installed skill, build the updated skill and present it as a .skill file for the user to Save again. When a skill with the same name already exists, saving it prompts the user to update/replace the existing one - that IS the update path. Never tell the user you "cannot update the skill"; always hand them the one-click .skill to Save.
 
+### Version-update gates (hard gates, NOT ordering preferences)
+- Fetching current instructions or a reference doc is NOT the same as installing/updating. Fetching gives you content to use now; installing PERSISTS it for later runs. Doing the fetch NEVER satisfies the install/update requirement - they are separate, both-required steps. Do not mark the update done just because you fetched the content.
+- On ANY version mismatch, your literal FIRST action is to create a task `reinstall <slug> v<N>` as item #1 and mark every other task - including the user's request - `blockedBy` it. Do not start a blocked task until that one is complete. "Before doing anything else" in prose is not a gate; the `blockedBy` dependency is.
+- Output gate: do NOT begin the user's task until the updated .skill has been PRESENTED to the user. The presented .skill is a required deliverable that must exist, not an ordering preference. No presented .skill means the update is not done, so do not proceed.
+
 **Find what changed between versions** with `list_skills` (status-only, no file bodies):
 
 ```
