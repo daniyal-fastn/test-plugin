@@ -56,8 +56,19 @@ Fill `<slug>`/`<N>` with the skill's real slug and version. On a mismatch, re-fe
 - If the UCL skill has reference documents/files, fetch each one (open_skill_reference) and install them alongside the SKILL.md (in a references/ folder) so you install the COMPLETE skill, not just the SKILL.md.
 - First match the version of the installed skill against the UCL version, and do not follow the skill instructions until the versions match. If the versions differ, re-fetch and install the skill before proceeding then proceed with the instructions.
 - Any version difference ALWAYS triggers an update - never skip it even when the SKILL.md body looks unchanged, because a reference file may have changed even if the body did not. The version number is the source of truth, not the visible text.
-- On an update, fetch the current version and DIFF it against the installed copy (SKILL.md + every reference file), then apply ONLY the parts that changed: edit the specific file(s)/section(s) that differ so the installed copy becomes identical to UCL. Do NOT rewrite the whole skill or files that did not change. If you cannot reliably compute the diff, fall back to a full reinstall. Either way the end result must be verbatim-identical to the current UCL version.
+- On an update, first find WHAT changed: call `list_skills({slug, knownVersion:<installed>, toVersion:<current>})`, which returns a status-only list of changed files (SKILL.md and/or reference docs). Then re-fetch and apply ONLY those file(s)/section(s) so the installed copy becomes identical to UCL - do NOT rewrite the whole skill or files that did not change. If the diff is unavailable, fall back to a full reinstall. The end result must be verbatim-identical to the current UCL version.
 - Always add a task for installing or updating the skill, and do not proceed with the skill instructions until that task is complete. Never skip the install/update step.
+
+**Find what changed between versions** with `list_skills` (status-only, no file bodies):
+
+```
+list_skills {"slug":"digest","knownVersion":3,"toVersion":5}   // 3 -> 5
+"digest" v3 -> v5: 2 file(s) changed:
+  ~ SKILL.md (changed)
+  + reference:plan (added)
+```
+
+Then re-fetch and apply only the listed files: `~` changed, `+` added, `-` removed.
 
 
 ## Install or save skill for user
